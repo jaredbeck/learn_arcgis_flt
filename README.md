@@ -9,7 +9,7 @@ Read FLT, write PNG
 ## References
 
 - [The National Map (TNM)
-  Download](https://viewer.nationalmap.gov/basic/#productSearch)
+  Download](https://viewer.nationalmap.gov/basic)
 - [ArcGIS Supported Raster File
   Formats](http://pro.arcgis.com/en/pro-app/help/data/imagery/supported-raster-dataset-file-formats.htm)
 - [Library of Congress: ESRI GridFloat Output
