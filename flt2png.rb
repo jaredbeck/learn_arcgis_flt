@@ -12,7 +12,7 @@ module LearnArcGISFLT
 
     def run
       range_tracker = RangeTracker.new
-      print "Reading FLT input, building PNG:    "
+      print 'Reading FLT input, building PNG:    '
       until @input.eof?
         @input.read_floats.each do |float|
           range_tracker.record(float)
@@ -39,7 +39,7 @@ module LearnArcGISFLT
     end
 
     def print
-      puts format("Elevation range: %.0f .. %.0f", @min, @max)
+      puts format('Elevation range: %.0f .. %.0f', @min, @max)
     end
   end
 
@@ -86,7 +86,8 @@ module LearnArcGISFLT
 
     def increment
       if @x.nil?
-        @x, @y = 0, 0
+        @x = 0
+        @y = 0
       elsif @x < @width - 1
         @x += 1
       else

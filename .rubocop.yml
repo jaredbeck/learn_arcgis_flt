@@ -1,5 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
 # Please:
 #
 # - Comment any deviations from the Ruby Style Guide
@@ -68,4 +66,9 @@ Style/DoubleNegation:
 # and it's not clear that it can be linted. Certainly, the default
 # `MinBodyLength` of 1 can actually hurt readability.
 Style/GuardClause:
+  Enabled: false
+
+# Too subtle to lint. Avoid modifier style except with the simplest of
+# conditional expressions.
+Style/IfUnlessModifier:
   Enabled: false
