@@ -6,49 +6,44 @@ module LearnArcGISFLT
   class CLI
     def initialize(input_file)
       @input = Input.new(input_file)
-      @width = 3612
-      @height = 3612
       @output = Output.new(3612, 3612)
     end
 
     def run
-      min, max = nil, nil
-      x, y = 0, 0
+      range_tracker = RangeTracker.new
       print "Reading FLT input, building PNG:    "
       until @input.eof?
         @input.read_floats.each do |float|
-          if min.nil? || float < min
-            min = float
-          end
-          if max.nil? || float > max
-            max = float
-          end
-          @output.write(x, y, float)
-          if x < @width - 1
-            x += 1
-          else
-            print format("\b\b\b%2d%%", percent_complete(y))
-            x = 0
-            y += 1
-          end
+          range_tracker.record(float)
+          @output.write(float)
         end
       end
-      puts format("\nElevation range: %f .. %f", min, max)
-      puts "Writing PNG output .."
+      print "\n"
+      range_tracker.print
       @output.save('out.png')
     ensure
       @input.close
     end
+  end
 
-    private
+  class RangeTracker
+    def record(value)
+      if @min.nil? || value < @min
+        @min = value
+      end
+      if @max.nil? || value > @max
+        @max = value
+      end
+    end
 
-    def percent_complete(y)
-      (y.to_f / @height.to_f * 100.0).to_i
+    def print
+      puts format("Elevation range: %.0f .. %.0f", @min, @max)
     end
   end
 
   class Output
     # -282.0 # Death Valley -282 ft (-86 m)
+    # +5_343 Mount Marcy 5,343 feet (1,629 m)
     # +20_310.0 # Mount McKinley summit 20,310 feet (6,190 m)
     MIN_EXPECTED = 113.345001
     MAX_EXPECTED = 649.373474
@@ -56,21 +51,48 @@ module LearnArcGISFLT
 
     def initialize(width, height)
       @png = ChunkyPNG::Image.new(width, height, :black)
-      @min_distance_from_black = nil
+      @cursor = RectangleCursor.new(width, height)
     end
 
-    def write(x, y, float)
+    def write(float)
+      x, y = @cursor.next
       distance_from_black = float - MIN_EXPECTED
-      if @min_distance_from_black.nil? || distance_from_black < @min_distance_from_black
-        @min_distance_from_black = distance_from_black
-      end
       whiteness = (distance_from_black / EXPECTED_DIFFERENCE * 255.0).to_i
       @png[x, y] = ChunkyPNG::Color.rgba(whiteness, whiteness, whiteness, 255)
     end
 
     def save(path)
-      puts "@min_distance_from_black #{@min_distance_from_black}"
       @png.save(path, interlace: false)
+    end
+  end
+
+  class RectangleCursor
+    def initialize(width, height)
+      @width = width
+      @height = height
+    end
+
+    def next
+      increment
+      [@x, @y]
+    end
+
+    private
+
+    def increment
+      if @x.nil?
+        @x, @y = 0, 0
+      elsif @x < @width - 1
+        @x += 1
+      else
+        print format("\b\b\b%2d%%", percent_complete(@y))
+        @x = 0
+        @y += 1
+      end
+    end
+
+    def percent_complete(y)
+      (y.to_f / @height.to_f * 100.0).to_i
     end
   end
 
