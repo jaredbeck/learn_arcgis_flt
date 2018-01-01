@@ -1,9 +1,3 @@
-Style/Documentation:
-  Exclude:
-    - 'spec/**/*'
-    - 'test/**/*'
-    - 'flt2png.rb'
-
 # Offense count: 2
 # Configuration parameters: .
 # SupportedStyles: annotated, template, unannotated
@@ -29,9 +23,3 @@ Style/ParallelAssignment:
 Style/StringLiterals:
   Exclude:
     - 'flt2png.rb'
-
-# Offense count: 1
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Metrics/LineLength:
-  Max: 88

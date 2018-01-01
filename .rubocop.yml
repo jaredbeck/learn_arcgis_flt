@@ -55,6 +55,10 @@ Performance/HashEachMethods:
 Style/BlockDelimiters:
   Enabled: false
 
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+
 # Use double negation wherever it would otherwise be impractical to convert
 # a value to an actual boolean.
 Style/DoubleNegation:

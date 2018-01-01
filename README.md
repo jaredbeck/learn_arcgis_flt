@@ -6,6 +6,11 @@ NED - National Elevation Dataset
 
 Read FLT, write PNG
 
+```
+ruby flt2png.rb usgs_ned_1_n43w077_gridfloat.flt out.png
+open out.png
+```
+
 ## References
 
 - [The National Map (TNM)
