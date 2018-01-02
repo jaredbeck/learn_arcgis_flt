@@ -4,6 +4,16 @@
 > the USGS and other Federal, State, and local partners to improve and deliver
 > topographic information for the Nation.
 
+## Install
+
+Prerequisites: ruby, bundler
+
+```
+git clone git@github.com:jaredbeck/learn_arcgis_flt.git
+bundle
+bin/test
+```
+
 ## Data
 
 - NED - National Elevation Dataset
