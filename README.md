@@ -1,13 +1,14 @@
-# Playing around with NED GIS data
+# The National Map (TNM)
 
-NED - National Elevation Dataset
+- NED - National Elevation Dataset
+- NHD - National Hydrography Dataset
 
-## flt2png.rb
+## png.rb
 
 Read FLT, write PNG
 
 ```
-ruby flt2png.rb usgs_ned_1_n43w077_gridfloat.flt out.png
+png.rb usgs_ned_1_n43w077_gridfloat.flt out.png
 open out.png
 ```
 
@@ -15,9 +16,13 @@ open out.png
 
 - [The National Map (TNM)
   Download](https://viewer.nationalmap.gov/basic)
+- [ArcGIS Float-to-Raster
+  function](http://desktop.arcgis.com/en/arcmap/10.3/tools/conversion-toolbox/float-to-raster.htm)
+
+### File Formats
+
 - [ArcGIS Supported Raster File
   Formats](http://pro.arcgis.com/en/pro-app/help/data/imagery/supported-raster-dataset-file-formats.htm)
 - [Library of Congress: ESRI GridFloat Output
   File](https://www.loc.gov/preservation/digital/formats/fdd/fdd000422.shtml)
-- [ArcGIS Float-to-Raster
-  function](http://desktop.arcgis.com/en/arcmap/10.3/tools/conversion-toolbox/float-to-raster.htm)
+- [Shapefile](https://en.wikipedia.org/wiki/Shapefile)

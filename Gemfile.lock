@@ -3,11 +3,25 @@ GEM
   specs:
     ast (2.3.0)
     chunky_png (1.3.8)
+    diff-lcs (1.3)
     parallel (1.12.1)
     parser (2.4.0.2)
       ast (~> 2.3)
     powerpack (0.1.1)
     rainbow (3.0.0)
+    rspec (3.7.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
+    rspec-core (3.7.0)
+      rspec-support (~> 3.7.0)
+    rspec-expectations (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-mocks (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-support (3.7.0)
     rubocop (0.52.1)
       parallel (~> 1.10)
       parser (>= 2.4.0.2, < 3.0)
@@ -23,6 +37,7 @@ PLATFORMS
 
 DEPENDENCIES
   chunky_png
+  rspec
   rubocop
 
 BUNDLED WITH

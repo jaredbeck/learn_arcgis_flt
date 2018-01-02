@@ -1,10 +1,18 @@
+#!/usr/bin/env ruby
+
 # frozen_string_literal: true
 
 require 'chunky_png'
 
-module LearnArcGISFLT
+$LOAD_PATH.unshift(File.expand_path('../../lib', __FILE__))
+require 'tnm/range_tracker'
+
+# The National Map (TNM)
+module TNM
   # Main class, parses ARGV and mediates between Input and Output.
   class CLI
+    USAGE = 'png.rb input_file output_file'
+
     def initialize(input_file, output_file)
       @input = Input.new(input_file)
       @output = Output.new(3612, 3612, output_file)
@@ -24,22 +32,6 @@ module LearnArcGISFLT
       @output.save
     ensure
       @input.close
-    end
-  end
-
-  # Tracks minimum and maximum values seen, without storing all values.
-  class RangeTracker
-    def record(value)
-      if @min.nil? || value < @min
-        @min = value
-      end
-      if @max.nil? || value > @max
-        @max = value
-      end
-    end
-
-    def print
-      puts format('Elevation range: %.0f .. %.0f', @min, @max)
     end
   end
 
@@ -135,4 +127,8 @@ module LearnArcGISFLT
   end
 end
 
-LearnArcGISFLT::CLI.new(*ARGV).run
+if ARGV.length == 2
+  TNM::CLI.new(*ARGV).run
+else
+  abort TNM::CLI::USAGE
+end
