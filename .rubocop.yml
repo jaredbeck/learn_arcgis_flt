@@ -62,6 +62,10 @@ Style/Documentation:
 Style/DoubleNegation:
   Enabled: false
 
+# Adding annotations to a format string often makes it less readable.
+Style/FormatStringToken:
+  Enabled: false
+
 # The decision of when to use a guard clause to improve readability is subtle,
 # and it's not clear that it can be linted. Certainly, the default
 # `MinBodyLength` of 1 can actually hurt readability.
