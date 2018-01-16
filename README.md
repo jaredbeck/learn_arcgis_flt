@@ -17,14 +17,17 @@ bin/test
 ## Data
 
 - NED - National Elevation Dataset
-- NHD - National Hydrography Dataset
+- NHD - [National Hydrography Dataset](https://nhd.usgs.gov/data.html)
 
 ## png.rb
 
-Read FLT, write PNG
+Read NED .flt and NHD .shp, write PNG
 
 ```
-png.rb usgs_ned_1_n43w077_gridfloat.flt out.png
+bin/png.rb \
+  data/ned/ned_1_n43w077/usgs_ned_1_n43w077_gridfloat.flt  \
+  data/nhd/ny/WBDHU8.shp \
+  out.png
 open out.png
 ```
 
@@ -41,4 +44,6 @@ open out.png
   Formats](http://pro.arcgis.com/en/pro-app/help/data/imagery/supported-raster-dataset-file-formats.htm)
 - [Library of Congress: ESRI GridFloat Output
   File](https://www.loc.gov/preservation/digital/formats/fdd/fdd000422.shtml)
-- [Shapefile](https://en.wikipedia.org/wiki/Shapefile)
+- Shapefile
+  - [Shapefile](https://en.wikipedia.org/wiki/Shapefile)
+  - [ruby-shapefile](https://github.com/toastbrot/ruby-shapefile)
