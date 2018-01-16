@@ -50,6 +50,8 @@ module TNM
       nhd_stream = File.open(@nhd_file)
       nhd = Parser::Shapefile::SHP.new(nhd_stream)
       puts nhd.header.inspect
+      puts "#{nhd.records.length} records"
+      puts "First record: #{nhd.records[0].inspect}"
     ensure
       nhd_stream.close
     end
